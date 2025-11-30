@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attack on Titan — Characters</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<header>
+    <h1>Attack on Titan — Characters</h1>
+    <p>A focused guide: background, abilities, and key moments of major characters.</p>
+</header>
+
+<main>
+
+    <button class="arrow left" onclick="slideLeft()" aria-label="Scroll left">&#10094;</button>
+
+    <div class="slider-container">
+        <div class="slider">
+
+            <a href="levi.html" class="card">
+                <p class="name">Levi Ackerman</p>
+                <img src="img/levi.png" alt="Levi Ackerman">
+                <span class="desc">Humanity's strongest soldier — disciplined, cold, and deadly precise.</span>
+                <ul class="quick">
+                    <li><strong>Role:</strong> Captain</li>
+                    <li><strong>Specialty:</strong> Close-quarters combat</li>
+                </ul>
+            </a>
+
+            <a href="eren.html" class="card">
+                <p class="name">Eren Yeager</p>
+                <img src="img/eren.png" alt="Eren Yeager">
+                <span class="desc">Driven by rage and the promise of freedom. A force that reshapes fate.</span>
+                <ul class="quick">
+                    <li><strong>Role:</strong> Protagonist / Titan shifter</li>
+                    <li><strong>Specialty:</strong> Titan transformation & determination</li>
+                </ul>
+            </a>
+
+            <a href="reiner.html" class="card">
+                <p class="name">Reiner Braun</p>
+                <img src="img/reiner.png" alt="Reiner Braun">
+                <span class="desc">A warrior divided — burdened by duty and guilt as the Armored Titan.</span>
+                <ul class="quick">
+                    <li><strong>Role:</strong> Warrior</li>
+                    <li><strong>Specialty:</strong> Heavy defense & frontline assault</li>
+                </ul>
+            </a>
+
+            <a href="erwin.html" class="card">
+                <p class="name">Erwin Smith</p>
+                <img src="img/𝑬𝒓𝒘𝒊𝒏.png" alt="Erwin Smith">
+                <span class="desc">A strategic genius who sacrificed everything to uncover the truth.</span>
+                <ul class="quick">
+                    <li><strong>Role:</strong> Commander</li>
+                    <li><strong>Specialty:</strong> Strategy & morale leadership</li>
+                </ul>
+            </a>
+
+        </div>
+    </div>
+
+    <button class="arrow right" onclick="slideRight()" aria-label="Scroll right">&#10095;</button>
+
+</main>
+
+<script>
+    const slider = document.querySelector('.slider');
+    const scrollAmount = 260; // distance between cards
+
+    function slideLeft() {
+        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+
+    function slideRight() {
+        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+
+    // Optional: touch drag support
+    let isDown = false, startX, scrollLeft;
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active-drag');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('active-drag'); });
+    slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('active-drag'); });
+    slider.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+</script>
+
+</body>
+</html>

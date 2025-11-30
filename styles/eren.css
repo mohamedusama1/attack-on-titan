@@ -1,0 +1,123 @@
+/* styles/eren.css */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg,#0f0f0f 0%, #171717 100%);
+    color: #f1f1f1;
+    font-family: 'Merriweather', serif;
+}
+
+.container {
+    width: 92%;
+    max-width: 980px;
+    margin: 30px auto;
+    padding-bottom: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 26px;
+    padding: 18px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+}
+
+header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.7rem;
+    color: #4caf50; /* أخضر عميق يناسب إيرين */
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    margin: 8px 0 0;
+    color: #ddd;
+    font-size: 1rem;
+}
+
+/* Profile layout */
+.profile {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    background: rgba(255,255,255,0.02);
+    padding: 22px;
+    border-radius: 14px;
+    align-items: center;
+}
+
+.profile img {
+    width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.55);
+    transform: translateY(0);
+    transition: transform 300ms ease, filter 300ms ease;
+}
+
+/* تأثير عند hover */
+.profile img:hover {
+    transform: translateY(-6px) scale(1.03);
+    filter: brightness(1.05);
+}
+
+.info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.info h2 {
+    font-family: 'Oswald', sans-serif;
+    margin: 14px 0 8px;
+    color: #7ee27a;
+}
+
+.info p {
+    line-height: 1.7;
+    color: #e6e6e6;
+}
+
+ul {
+    margin: 10px 0 18px;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* Quote */
+blockquote {
+    background: rgba(255,255,255,0.05);
+    padding: 12px 16px;
+    border-left: 4px solid #4caf50;
+    border-radius: 6px;
+    font-style: italic;
+    margin: 8px 0 0;
+}
+
+/* back link */
+.back {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 14px;
+    background: #4caf50;
+    color: #111;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 220ms ease, transform 220ms ease;
+}
+
+.back:hover {
+    background: #45a047;
+    transform: translateY(-4px);
+}
+
+/* responsive */
+@media (max-width:880px){
+    .profile { flex-direction: column; align-items: center; text-align: center; }
+    .info { min-width: 100%; }
+    .profile img { width: 80%; max-width: 400px; }
+}
