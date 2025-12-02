@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
-<header>
-    <h1>Attack on Titan — Characters</h1>
-    <p>A focused guide: background, abilities, and key moments of major characters.</p>
+<header class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <h1>Attack on Titan — Characters</h1>
+            <p class="lead">A focused guide: backgrounds, abilities, and key moments of major characters.</p>
+            <div class="hero-cta">
+                <a href="#characters" class="btn">View Characters</a>
+                <a href="#analysis" class="btn outline">Series Analysis</a>
+            </div>
+        </div>
+    </div>
 </header>
 
-<main>
+<main id="characters">
 
     <button class="arrow left" onclick="slideLeft()" aria-label="Scroll left">&#10094;</button>
 
@@ -55,7 +63,7 @@
 
             <a href="erwin.html" class="card">
                 <p class="name">Erwin Smith</p>
-                <img src="img/𝑬𝒓𝒘𝒊𝒏.png" alt="Erwin Smith">
+                <img src="img/erwin.png" alt="Erwin Smith">
                 <span class="desc">A strategic genius who sacrificed everything to uncover the truth.</span>
                 <ul class="quick">
                     <li><strong>Role:</strong> Commander</li>
@@ -70,26 +78,20 @@
 
 </main>
 
+<footer class="footer">
+    <p>Fan guide. Images and names belong to their creators.</p>
+</footer>
+
 <script>
     const slider = document.querySelector('.slider');
-    const scrollAmount = 260; // distance between cards
+    const scrollAmount = 260;
 
-    function slideLeft() {
-        slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
+    function slideLeft() { slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); }
+    function slideRight() { slider.scrollBy({ left: scrollAmount, behavior: 'smooth' }); }
 
-    function slideRight() {
-        slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-
-    // Optional: touch drag support
+    // drag support
     let isDown = false, startX, scrollLeft;
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('active-drag');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
+    slider.addEventListener('mousedown', (e) => { isDown = true; slider.classList.add('active-drag'); startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
     slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('active-drag'); });
     slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('active-drag'); });
     slider.addEventListener('mousemove', (e) => {
@@ -99,6 +101,18 @@
         const walk = (x - startX) * 1.2;
         slider.scrollLeft = scrollLeft - walk;
     });
+
+    // lightweight parallax for header (updates CSS vars)
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', (e) => {
+        const w = hero.offsetWidth;
+        const h = hero.offsetHeight;
+        const x = (e.clientX / w) - 0.5;
+        const y = (e.clientY / h) - 0.5;
+        hero.style.setProperty('--px', (x * 12) + 'px');
+        hero.style.setProperty('--py', (y * 8) + 'px');
+    });
+    hero.addEventListener('mouseleave', () => { hero.style.setProperty('--px', '0px'); hero.style.setProperty('--py', '0px'); });
 </script>
 
 </body>
